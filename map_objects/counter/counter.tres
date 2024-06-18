@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=3 format=3 uid="uid://p7as51lydh1a"]
+
+[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="1_jlt5h"]
+[ext_resource type="Script" path="res://map_objects/counter/counter.gd" id="2_fj0jm"]
+
+[resource]
+script = ExtResource("1_jlt5h")
+script_class = ExtResource("2_fj0jm")
+apply_rotation_on_map_build = true
+classname = "counter"
+description = "Counts down when used, emits signal when count ends."
+qodot_internal = false
+base_classes = Array[Resource]([])
+class_properties = {
+"number": 0,
+"target": "",
+"targetname": ""
+}
+class_property_descriptions = {}
+meta_properties = {
+"color": Color(0.8, 0.8, 0.8, 1),
+"size": AABB(-8, -8, -8, 8, 8, 8)
+}
+node_class = ""
+transient_node = false
