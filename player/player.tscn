@@ -1,7 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://k0hok3jdwuh2"]
+[gd_scene load_steps=19 format=3 uid="uid://k0hok3jdwuh2"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_r6t8t"]
+[ext_resource type="Script" path="res://player/hand.gd" id="2_arr1k"]
 [ext_resource type="Texture2D" uid="uid://uqs5jbopyp0p" path="res://enemies/WarpSkull.png" id="3_ahs32"]
+[ext_resource type="Script" path="res://player/interact_ray.gd" id="3_g4kpm"]
 [ext_resource type="Script" path="res://player/weapon_display.gd" id="3_y6eur"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pvqr2"]
@@ -90,6 +92,13 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="LabelSettings" id="LabelSettings_lw6fr"]
+font_size = 32
+font_color = Color(0.796078, 0.141176, 0.152941, 1)
+shadow_size = 10
+shadow_color = Color(0, 0, 0, 0.301961)
+shadow_offset = Vector2(-2, 2)
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_r6t8t")
 
@@ -97,8 +106,18 @@ script = ExtResource("1_r6t8t")
 shape = SubResource("CapsuleShape3D_pvqr2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0.8, 0)
 current = true
+
+[node name="Hand" type="Node3D" parent="Camera3D" node_paths=PackedStringArray("body")]
+script = ExtResource("2_arr1k")
+body = NodePath("../..")
+
+[node name="InteractRay" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -2)
+collision_mask = 2
+collide_with_areas = true
+script = ExtResource("3_g4kpm")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -108,25 +127,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LeftHand" type="Control" parent="Control"]
-layout_mode = 1
-anchor_left = 0.198
-anchor_top = 0.795
-anchor_right = 0.198
-anchor_bottom = 0.795
-offset_left = -0.0960083
-offset_top = -0.160034
-offset_right = -0.0960083
-offset_bottom = -0.160034
-grow_vertical = 0
-metadata/_edit_group_ = true
-
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Control/LeftHand" groups=["l_weapon_display"]]
-sprite_frames = SubResource("SpriteFrames_vtttf")
-animation = &"shoot"
-script = ExtResource("3_y6eur")
-
-[node name="RightHand" type="Control" parent="Control"]
+[node name="Hand" type="Control" parent="Control"]
 layout_mode = 1
 anchor_left = 0.813
 anchor_top = 0.795
@@ -139,7 +140,34 @@ offset_bottom = -0.160034
 grow_vertical = 0
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="Control/RightHand" groups=["r_weapon_display"]]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Control/Hand" groups=["weapon_display"]]
 sprite_frames = SubResource("SpriteFrames_vtttf")
 animation = &"shoot"
 script = ExtResource("3_y6eur")
+
+[node name="Control" type="Control" parent="Control"]
+layout_mode = 1
+anchor_left = 0.23
+anchor_top = 0.741
+anchor_right = 0.77
+anchor_bottom = 0.821
+offset_left = 0.0400085
+offset_top = -0.16803
+offset_right = -0.0400391
+offset_bottom = -0.00799561
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="Control/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_lw6fr")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="interaction_text" from="Camera3D/InteractRay" to="Control/Control/Label" method="set_text"]
