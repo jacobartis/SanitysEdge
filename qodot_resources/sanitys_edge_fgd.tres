@@ -1,50 +1,13 @@
-[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=6 format=3 uid="uid://cnu8gnwov2n0v"]
+[gd_resource type="Resource" script_class="QodotFGDFile" load_steps=9 format=3 uid="uid://cnu8gnwov2n0v"]
 
 [ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_file.gd" id="1_73j4l"]
 [ext_resource type="Resource" uid="uid://c36hv0o6g0udo" path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" id="1_vk200"]
-[ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_solid_class.gd" id="2_epdd2"]
-[ext_resource type="Script" path="res://addons/qodot/game_definitions/fgd/solid_classes/button.gd" id="3_2c4a2"]
-
-[sub_resource type="Resource" id="Resource_001fc"]
-script = ExtResource("2_epdd2")
-spawn_type = 2
-build_visuals = true
-use_in_baked_light = true
-shadow_casting_setting = 1
-build_occlusion = false
-render_layers = 1
-collision_shape_type = 1
-collision_layer = 1
-collision_mask = 1
-collision_priority = 1.0
-collision_shape_margin = 0.04
-script_class = ExtResource("3_2c4a2")
-classname = "cool_button"
-description = "Interactive button brush."
-qodot_internal = false
-base_classes = Array[Resource]([])
-class_properties = {
-"axis": Vector3(0, -1, 0),
-"depth": 0.8,
-"press_signal_delay": 0.0,
-"release_delay": 0.0,
-"release_signal_delay": 0.0,
-"speed": 8.0,
-"target": "",
-"trigger_signal_delay": 0.0
-}
-class_property_descriptions = {
-"axis": "Direction of movement when pressed.",
-"depth": "How far to move along the axis when pressed.",
-"press_signal_delay": "Seconds after press() is called, before emitting is own pressed signal.",
-"release_delay": "Seconds after a physics body exits, before calling release()",
-"release_signal_delay": "Seconds after release() is called, before emitting is own released signal.",
-"speed": "Delta multiplier for a lerp weight to move the button to its desired position.",
-"trigger_signal_delay": "Seconds after press() is called, before emitting the trigger signal."
-}
-meta_properties = {}
-node_class = "Area3D"
-transient_node = false
+[ext_resource type="Resource" uid="uid://dfsbchvfgnhe4" path="res://map_objects/interact_button/interact_button.tres" id="3_mgmak"]
+[ext_resource type="Resource" uid="uid://dhtuwhdulj6uw" path="res://addons/qodot/game_definitions/fgd/point_classes/timer_point_class.tres" id="3_uiidp"]
+[ext_resource type="Resource" uid="uid://drsx1wjavaggn" path="res://map_objects/portal/portal.tres" id="4_xnlpk"]
+[ext_resource type="Resource" uid="uid://pwtqbascdsdw" path="res://map_objects/enemy_spawner/enemy_spawner.tres" id="5_conu8"]
+[ext_resource type="Resource" uid="uid://p7as51lydh1a" path="res://map_objects/counter/counter.tres" id="6_yorbg"]
+[ext_resource type="Resource" uid="uid://bq50qoxphhshs" path="res://map_objects/jump_pad/jump_pad.tres" id="7_edhox"]
 
 [resource]
 script = ExtResource("1_73j4l")
@@ -52,4 +15,4 @@ export_file = false
 target_folder = "A:/Game dev/TrenchBroom/games/SanitysEdge"
 fgd_name = "SanitysEdge"
 base_fgd_files = Array[Resource]([ExtResource("1_vk200")])
-entity_definitions = Array[Resource]([SubResource("Resource_001fc")])
+entity_definitions = Array[Resource]([ExtResource("3_uiidp"), ExtResource("3_mgmak"), ExtResource("4_xnlpk"), ExtResource("5_conu8"), ExtResource("6_yorbg"), ExtResource("7_edhox")])
