@@ -1,4 +1,5 @@
 extends Area3D
+class_name QodotButton
 
 signal trigger()
 signal pressed()
@@ -80,9 +81,7 @@ func body_shape_exited(body_id, body: Node, body_shape_idx: int, self_shape_idx:
 func press() -> void:
 	if is_pressed:
 		return
-
 	is_pressed = true
-
 	emit_trigger()
 	emit_pressed()
 

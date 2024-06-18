@@ -14,7 +14,7 @@ var rotate_speed := 360.0
 
 func update_properties():
 	if 'axis' in properties:
-		rotate_axis = properties['axis']
+		rotate_axis = properties['axis'].normalized()
 
 	if 'speed' in properties:
 		rotate_speed = properties['speed']

@@ -1,21 +1,23 @@
-[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=2 format=3 uid="uid://dhtuwhdulj6uw"]
+[gd_resource type="Resource" script_class="QodotFGDPointClass" load_steps=3 format=3 uid="uid://dhtuwhdulj6uw"]
 
 [ext_resource type="Script" path="res://addons/qodot/src/resources/game-definitions/fgd/qodot_fgd_point_class.gd" id="1_kg3q4"]
+[ext_resource type="Script" path="res://addons/qodot/game_definitions/fgd/point_classes/timer_point_class.gd" id="2_mmfv2"]
 
 [resource]
 script = ExtResource("1_kg3q4")
-classname = ""
-description = ""
+script_class = ExtResource("2_mmfv2")
+apply_rotation_on_map_build = true
+classname = "timer"
+description = "triggers a timer that emits a signal"
 qodot_internal = false
 base_classes = Array[Resource]([])
 class_properties = {
-"oneshot": false,
+"autostart": 0,
+"one_shot": 0,
+"target": "",
 "time": 0.0
 }
-class_property_descriptions = {
-"oneshot": "If the timer should repeatedly emit a \"timeout\" signal when its time elapses.",
-"time": "How long in seconds before the timer emits \"timeout\"."
-}
+class_property_descriptions = {}
 meta_properties = {
 "color": Color(0, 0.94902, 0.568627, 1),
 "size": AABB(-8, -8, -8, 8, 8, 8)
